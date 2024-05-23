@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import './styles/fonsts.css';
+import Header from './components/common/header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -13,7 +16,7 @@ function App() {
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrerr"
         >
           Learn React
         </a>
