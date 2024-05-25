@@ -1,5 +1,7 @@
 import React from "react";
 import GameCard from "../common/cards/GameCard";
+import WalletConnectionDrawer from "../side-pannels-drawers/WalletConnection";
+import Wallet from "../buttons/Wallet";
 
 import RealMadridLogo from "../../assets/img/real-madrid-logo.png";
 import FCBarcelonaLogo from "../../assets/img/fc-barcelona-logo.png";
@@ -8,7 +10,7 @@ import StuttgartLogo from "../../assets/img/fc-stuttgart-logo.png";
 
 import { GiSoccerBall } from "react-icons/gi";
 
-function FootballLayout() {
+function FootballLayout({ isOpen, setIsOpen }) {
     return (
         <div className="min-h-screen bg-gray-800 pt-8 pb-12">
 
@@ -49,6 +51,15 @@ function FootballLayout() {
                     isLive={false}
                 />
             </div>
+
+            <WalletConnectionDrawer isOpen={isOpen} setIsOpen={setIsOpen}>
+                <div className="rounded-2xl">
+                    <Wallet 
+                        walletName="Metamask"
+                        walletLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png"
+                    />
+                </div>
+            </WalletConnectionDrawer>
         </div>
     );
 }

@@ -2,8 +2,9 @@ import React from "react";
 import '../../index.css';
 import '../../styles/fonsts.css';
 import SearchBar from '../../components/common/search-bar/searchBar.js';
+import ConnectButtonDrawer from '../../components/buttons/ConnectButtonDrawer.js';
 
-function Header() {
+function Header({ setIsOpen }) {
     return (
         <div className="flex h-16 items-center text-white bg-gray-800 header">
 
@@ -22,9 +23,13 @@ function Header() {
             </div>
 
             {/* Connect Button */}
-            <button className="justify-self-end bg-gray-700 hover:bg-indigo-900 py-1.5 px-12 mr-8 rounded-2xl lowercase">
+            <ConnectButtonDrawer setIsOpen={setIsOpen} />
+            {/* <button className="justify-self-end bg-gray-700 hover:bg-indigo-900 py-1.5 px-12 mr-8 rounded-2xl lowercase">
                 Connect
-            </button>
+            </button> */}
+            {/* <button onClick={() => setIsOpen(true)} className="justify-self-end bg-gray-700 hover:bg-indigo-900 py-1.5 px-12 mr-8 rounded-2xl lowercase">
+                Connect
+            </button> */}
         </div>
     );
 }

@@ -14,13 +14,9 @@ const TeamCard = ({ logo, teamName, odds }) => {
                 <div className="text-2xl text-gray-300 mt-2">
                     {teamName}
                 </div>
-                {/* <img src={BarcelonaLogo} alt="Barcelona Logo" className="w-36" /> */}
 
                 {/* Team Odds */}
                 <OddsButton odds={odds} />
-                {/* <button className="text-md font-bold text-gray-300 mt-4 bg-gray-900 p-2 rounded-md w-44 hover:bg-indigo-900">
-                    <p className="text-blue-400">{odds}</p>
-                </button> */}
             </div>
         </div>
     );
