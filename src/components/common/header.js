@@ -1,13 +1,28 @@
 import React from "react";
 import '../../index.css';
+import '../../styles/fonsts.css';
+import SearchBar from '../../components/common/search-bar/searchBar.js';
 
 function Header() {
     return (
-        <div className="flex h-20 items-center text-white bg-gray-900">
-            {/* <h1>Header</h1> */}
-            <div className="flex-none w-20"><a href="https://valid-url.com" className="text-2xl" target="_blank" rel="noopener noreferrer">Logo</a></div>
-            <div className="flex-1">search</div>
-            <button className="justify-self-end w-20 bg-indigo-500 hover:bg-indigo-700 font-bold py-2 px-4 rounded">
+        <div className="flex h-16 items-center text-white bg-gray-800 header">
+
+            {/* Logo */}
+            <div className="ml-8 logo-main">
+                <a href="https://valid-url.com" className="text-3xl" target="_blank" rel="noopener noreferrer">
+                    FairBet
+                </a>
+            </div>
+
+            {/* Search Bar */}
+            <div className="flex-1 mr-4">
+                <div className="flex justify-end">
+                    <SearchBar />
+                </div>
+            </div>
+
+            {/* Connect Button */}
+            <button className="justify-self-end bg-gray-700 hover:bg-indigo-900 py-1.5 px-12 mr-8 rounded-2xl lowercase">
                 Connect
             </button>
         </div>
