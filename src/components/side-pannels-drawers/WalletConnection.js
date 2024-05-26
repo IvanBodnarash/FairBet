@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function WalletConnectionDrawer({ children, isOpen, setIsOpen }) {
     return (
@@ -17,7 +18,10 @@ export default function WalletConnectionDrawer({ children, isOpen, setIsOpen }) 
                 }
             >
                 <article className="relative w-full max-w-lg pb-10 flex flex-col">
-                    <header className='p-4 font-bold text-white text-lg'>Connect a Wallet</header>.
+                    <div className="flex flex-row items-center">
+                        <button className="p-2 m-4 rounded-lg bg-gray-800 hover:bg-gray-800 cursor-pointer hover:bg-indigo-900" onClick={() => setIsOpen(false)}><IoCloseSharp className="text-white text-3xl" /></button>
+                        <header className='p-4 font-bold text-white text-lg'>Connect a Wallet</header>
+                    </div>
                     {children}
                 </article>
             </section>
