@@ -4,9 +4,9 @@ import '../../styles/fonsts.css';
 import SearchBar from '../../components/common/search-bar/searchBar.js';
 import ConnectButtonDrawer from '../../components/buttons/ConnectButtonDrawer.js';
 
-function Header({ setIsOpen }) {
+function Header({ setIsOpenWallet }) {
     return (
-        <div className="flex h-16 items-center text-white bg-gray-800 header">
+        <div className="flex h-16 items-center text-white bg-gray-800 header z-50">
 
             {/* Logo */}
             <div className="ml-8 logo-main">
@@ -23,7 +23,7 @@ function Header({ setIsOpen }) {
             </div>
 
             {/* Connect Button */}
-            <ConnectButtonDrawer setIsOpen={setIsOpen} />
+            <ConnectButtonDrawer setIsOpenWallet={setIsOpenWallet} />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import OddsButton from "../buttons/OddsButton";
 
-const MiddleCard = ({ date, time, score, odds }) => {
+const MiddleCard = ({ date, time, score, odds, onBetClick, setIsOpenBetslip }) => {
     return (
         <div className="flex flex-col justify-center text-white w-44">
 
@@ -25,7 +25,8 @@ const MiddleCard = ({ date, time, score, odds }) => {
                 </div>
                 
                 {/* Draw Button */}
-                <OddsButton odds={odds} />
+                {/* <OddsButton odds={odds} onClick={onBetClick} /> */}
+                <OddsButton odds={odds} onClick={onBetClick} setIsOpenBetslip={setIsOpenBetslip} />
                 {/* <button className="text-md font-bold text-gray-300 mt-4 bg-gray-900 p-2 rounded-md">
                     <p className="text-blue-400">{odds}</p>
                 </button> */}

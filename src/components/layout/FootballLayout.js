@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import GameCard from "../common/cards/GameCard";
 import WalletConnectionDrawer from "../side-pannels-drawers/WalletConnection";
 import Wallet from "../buttons/Wallet";
+import BetDetailsDrawer from "../side-pannels-drawers/BetslipContainer";
 
 import RealMadridLogo from "../../assets/img/real-madrid-logo.png";
 import FCBarcelonaLogo from "../../assets/img/fc-barcelona-logo.png";
@@ -10,9 +11,26 @@ import StuttgartLogo from "../../assets/img/fc-stuttgart-logo.png";
 
 import { GiSoccerBall } from "react-icons/gi";
 
-function FootballLayout({ isOpen, setIsOpen }) {
+function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpenBetslip }) {
+    const [isBetDetailsOpen, setIsBetDetailsOpen] = useState(false);
+    const [selectedBet, setSelectedBet] = useState(null);
+    const [betDetails, setBetDetails] = useState(false);
+    const [betAmount, setBetAmount] = useState("");
+
+    const handleBetClick = (betType, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds) => {
+        setSelectedBet(betType);
+        setBetDetails({ teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds });
+        setIsBetDetailsOpen(true);
+    };
+
+    const handleCloseBetDetails = () => {
+        setIsBetDetailsOpen(false);
+        setSelectedBet(null);
+        setBetDetails({});
+        setBetAmount("");
+    };
     return (
-        <div className="min-h-screen bg-gray-800 pt-8 pb-12">
+        <div className={`min-h-screen bg-gray-800 pt-8 pb-12 transition-all ${isBetDetailsOpen ? 'pr-1/3' : ''}`}>
 
             {/* Sport Category */}
             <div className="flex justify-center">
@@ -24,7 +42,8 @@ function FootballLayout({ isOpen, setIsOpen }) {
 
             {/* Game Cards */}
             <div className="flex flex-col justify-center mt-8">
-                <GameCard 
+                <GameCard
+                    id='game1'
                     logoTeam1={RealMadridLogo}
                     logoTeam2={FCBarcelonaLogo}
                     teamName1="Real Madrid"
@@ -36,8 +55,10 @@ function FootballLayout({ isOpen, setIsOpen }) {
                     teamOdds2="2.15"
                     drawOdds="0.12"
                     isLive={true}
+                    onBetClick={handleBetClick}
                 />
-                <GameCard 
+                <GameCard
+                    id='game2'
                     logoTeam1={BayernLogo}
                     logoTeam2={StuttgartLogo}
                     teamName1="FC Bayern Munich"
@@ -49,17 +70,33 @@ function FootballLayout({ isOpen, setIsOpen }) {
                     teamOdds2="4.15"
                     drawOdds="1.12"
                     isLive={false}
+                    onBetClick={handleBetClick}
                 />
             </div>
 
-            <WalletConnectionDrawer isOpen={isOpen} setIsOpen={setIsOpen}>
+            {/* Wallet Drawer */}
+            <WalletConnectionDrawer isOpenWallet={isOpenWallet} setIsOpenWallet={setIsOpenWallet}>
                 <div className="rounded-2xl">
-                    <Wallet 
+                    <Wallet
+                        walletName="Metamask"
+                        walletLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png"
+                    />
+                    <Wallet
                         walletName="Metamask"
                         walletLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png"
                     />
                 </div>
             </WalletConnectionDrawer>
+
+            {/* Betslip Drawer */}
+            <BetDetailsDrawer
+                isOpenBetslip={isBetDetailsOpen}
+                selectedBet={selectedBet}
+                betAmount={betAmount}
+                setBetAmount={setBetAmount}
+                {...betDetails}
+                onClose={handleCloseBetDetails}
+            />
         </div>
     );
 }

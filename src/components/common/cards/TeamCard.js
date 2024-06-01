@@ -1,7 +1,8 @@
 import React from "react";
 import OddsButton from "../buttons/OddsButton";
 
-const TeamCard = ({ logo, teamName, odds }) => {
+const TeamCard = ({ logo, teamName, odds, onBetClick, setIsOpenBetslip }) => {
+    
     return (
         <div className="w-52 flex flex-col items-center">
             {/* Team Logo */}
@@ -16,7 +17,7 @@ const TeamCard = ({ logo, teamName, odds }) => {
                 </div>
 
                 {/* Team Odds */}
-                <OddsButton odds={odds} />
+                <OddsButton odds={odds} onClick={onBetClick} setIsOpenBetslip={setIsOpenBetslip} />
             </div>
         </div>
     );
