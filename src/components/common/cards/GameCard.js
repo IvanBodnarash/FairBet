@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import TeamCard from "./TeamCard";
 import MiddleCard from "./MiddleContainer";
-import BetDetails from "../../side-pannels-drawers/BetslipContainer";
+// import BetDetails from "../../side-pannels-drawers/BetslipContainer";
 
 const GameCard = ({ id, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds, isLive, logoTeam1, logoTeam2, onBetClick }) => {
 
@@ -20,7 +20,7 @@ const GameCard = ({ id, teamName1, teamName2, score, date, time, teamOdds1, team
                     logo={logoTeam1}
                     teamName={teamName1}
                     odds={teamOdds1}
-                    onBetClick={() => onBetClick(`Team: ${teamName1}`, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds)}    
+                    onBetClick={() => onBetClick(`${teamName1}`, teamName1, teamName2, score, date, time, `${teamOdds1}`, teamOdds2, drawOdds, teamOdds1)}    
                     // isOpenBetslip={isOpenBetslip}
                     // setIsOpenBetslip={setIsOpenBetslip}
                 />
@@ -31,7 +31,7 @@ const GameCard = ({ id, teamName1, teamName2, score, date, time, teamOdds1, team
                     date={date}
                     time={time}
                     odds={drawOdds}
-                    onBetClick={() => onBetClick("Draw", teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds)}
+                    onBetClick={() => onBetClick("Draw", teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, `${drawOdds}`, drawOdds)}
                     // isOpenBetslip={isOpenBetslip}
                     // setIsOpenBetslip={setIsOpenBetslip}
                 />
@@ -42,7 +42,7 @@ const GameCard = ({ id, teamName1, teamName2, score, date, time, teamOdds1, team
                     logo={logoTeam2}
                     teamName={teamName2}
                     odds={teamOdds2}
-                    onBetClick={() => onBetClick(`Team: ${teamName2}`, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds)}
+                    onBetClick={() => onBetClick(`${teamName2}`, teamName1, teamName2, score, date, time, teamOdds1, `${teamOdds2}`, drawOdds, teamOdds2)}
                     // isOpenBetslip={isOpenBetslip}
                     // setIsOpenBetslip={setIsOpenBetslip}
                 />

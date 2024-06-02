@@ -1,155 +1,103 @@
-// // import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-// // export default function BetslipContainer({ children, isOpenBetslip, setIsOpenBetslip }) {
-// //     return (
-// //         <div
-// //             className={
-// //                 " fixed top-0 bottom-0 left-0 w-64 bg-gray-900 transform transition-transform duration-300 ease-in-out " +
-// //                 (isOpenBetslip
-// //                     ? " translate-x-0  "
-// //                     : " -translate-x-full  ")
-// //             }
-// //         >
-// //             <section
-// //                 className={
-// //                     "max-w-lg bg-gray-900 h-5/6 shadow-xl delay-400 duration-300 ease-in-out transition-all transform  " +
-// //                     (isOpenBetslip ? " translate-x-0 " : " translate-x-full ")
-// //                 }
-// //             >
-// //                 <article className="relative w-full max-w-lg pb-10 flex flex-col">
-// //                     <div className="flex flex-row items-center">
-// //                         <button className="p-2 m-4 rounded-lg bg-gray-800 hover:bg-gray-800 cursor-pointer hover:bg-indigo-900" onClick={() => setIsOpenBetslip(false)}></button>
-// //                         <header className='p-4 font-bold text-white text-lg'>Connect a Wallet</header>
-// //                     </div>
-// //                     {children}
-// //                 </article>
-// //             </section>
-// //             <section
-// //                 className="w-screen h-full cursor-pointer "
-// //                 onClick={() => {
-// //                     setIsOpenBetslip(false);
-// //                 }}
-// //             ></section>
-// //         </div>
-// //     );
-// // }
+import { IoReceiptSharp, IoCloseSharp } from "react-icons/io5";
 
-// import React from 'react';
-// import { IoCloseSharp } from "react-icons/io5";
+const BetDetailsDrawer = ({
+    isOpenBetslip,
+    selectedBet,
+    selectedOdd,
+    betAmount,
+    setBetAmount,
+    teamName1,
+    teamName2,
+    score,
+    date,
+    time,
+    teamOdds1,
+    teamOdds2,
+    drawOdds,
+    onClose
+}) => {
+    const [isInitialRender, setIsInitialRender] = useState(true);
 
-// export default function WalletConnectionDrawer({ children, isOpenBetslip, setIsOpenBetslip }) {
-//     return (
-//         <main
-//             className={
-//                 " fixed overflow-hidden z-50 inset-0 transform ease-in-out " +
-//                 (isOpenBetslip
-//                     ? " transition-opacity opacity-100 duration-500 translate-x-0  "
-//                     : " transition-all delay-200 opacity-0 translate-x-full  ")
-//             }
-//         >
-//             <section
-//                 className={
-//                     "w-1/4 m-3 rounded-xl max-w-lg right-0 absolute bg-gray-900 h-5/6 shadow-xl delay-400 duration-300 ease-in-out transition-all transform  " +
-//                     (isOpenBetslip ? " translate-x-0 " : " translate-x-full ")
-//                 }
-//             >
-//                 <article className="relative w-full max-w-lg pb-10 flex flex-col">
-//                     <div className="flex flex-row items-center">
-//                         <button className="p-2 m-4 rounded-lg bg-gray-800 hover:bg-gray-800 cursor-pointer hover:bg-indigo-900" onClick={() => setIsOpenBetslip(false)}><IoCloseSharp className="text-white text-3xl" /></button>
-//                         <header className='p-4 font-bold text-white text-lg'>Connect a Wallet</header>
-//                     </div>
-//                     {children}
-//                 </article>
-//             </section>
-//             <section
-//                 className="w-screen h-full cursor-pointer "
-//                 onClick={() => {
-//                     setIsOpenBetslip(false);
-//                 }}
-//             ></section>
-//         </main>
-//     );
-// }
+    // Set individual value for betAmount if it's empty
+    useEffect(() => {
+        if (isInitialRender && betAmount === '') {
+            setBetAmount("0.000001");
+            setIsInitialRender(false);
+        }
+    }, [betAmount, isInitialRender, setBetAmount]);
 
-// BetDetails.jsx
-// import React from 'react';
-
-// const BetDetails = ({ selectedBet, betAmount, setBetAmount, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds, onClose }) => {
-//     if (!selectedBet) {
-//         return null;
-//     }
-
-//     return (
-//         <div className="right-0 top-0 h-full w-1/3 bg-white shadow-lg p-4 z-50">
-//             <button onClick={onClose} className="text-right text-red-500">Close</button>
-//             <div className="p-4">
-//                 <h2 className="text-xl font-bold">Bet Details</h2>
-//                 <p>You chose bet on: {selectedBet}</p>
-//                 <input
-//                     type="number"
-//                     value={betAmount}
-//                     onChange={(e) => setBetAmount(e.target.value)}
-//                     placeholder="Enter amount"
-//                     className="p-2 m-2 border rounded-md w-full"
-//                 />
-//                 <div className="mt-4">
-//                     <p><strong>Match Info:</strong></p>
-//                     <p>Teams: {teamName1} vs {teamName2}</p>
-//                     <p>Score: {score}</p>
-//                     <p>Date: {date}</p>
-//                     <p>Time: {time}</p>
-//                     <p>Odds:</p>
-//                     <ul>
-//                         <li>{teamName1}: {teamOdds1}</li>
-//                         <li>{teamName2}: {teamOdds2}</li>
-//                         <li>Draw: {drawOdds}</li>
-//                     </ul>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default BetDetails;
-
-// BetDetailsDrawer.jsx
-import React from 'react';
-
-const BetDetailsDrawer = ({ isOpenBetslip, selectedBet, betAmount, setBetAmount, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds, onClose }) => {
     return (
         <div
-            className={`fixed top-16 right-0 h-full bg-gray-900 shadow-lg transition-transform transform ${
-                isOpenBetslip ? 'translate-x-0' : 'translate-x-full'
-            } w-1/3`}
+            className={`fixed top-16 right-0 h-full bg-gray-900 shadow-lg transition-transform transform ${isOpenBetslip ? 'translate-x-0' : 'translate-x-full'} w-1/3`}
         >
-            <button onClick={onClose} className="text-right text-red-500 m-4">Close</button>
-            <div className="p-4 text-gray-300">
-                <h2 className="text-xl font-bold">Bet Details</h2>
-                {selectedBet && (
-                    <>
-                        <p>You chose bet on: {selectedBet}</p>
-                        <input
-                            type="number"
-                            value={betAmount}
-                            onChange={(e) => setBetAmount(e.target.value)}
-                            placeholder="Enter amount"
-                            className="p-2 m-2 border rounded-md w-full"
-                        />
-                        <div className="mt-4">
-                            <p><strong>Match Info:</strong></p>
-                            <p>Teams: {teamName1} vs {teamName2}</p>
-                            <p>Score: {score}</p>
-                            <p>Date: {date}</p>
-                            <p>Time: {time}</p>
-                            <p>Odds:</p>
-                            <ul>
-                                <li>{teamName1}: {teamOdds1}</li>
-                                <li>{teamName2}: {teamOdds2}</li>
-                                <li>Draw: {drawOdds}</li>
-                            </ul>
+            {/* Bet Details Container */}
+            <div className="flex flex-col">
+
+                {/* Bet Details Heading */}
+                <div className="flex flex-row justify-between items-center">
+                    <div className="flex flex-row items-center">
+                        <IoReceiptSharp className="items-center text-gray-300 text-2xl m-4" />
+                        <h2 className="text-xl font-bold text-gray-300 p-4">Bet Details</h2>
+                    </div>
+                    <button onClick={onClose} className="text-white w-1/5 m-4 bg-gray-700 hover:bg-indigo-900 p-2 rounded-3xl">Close</button>
+                </div>
+
+                <hr className="mx-4 border-gray-700"></hr>
+
+                {/* Bet Details Heading lower content */}
+                <div className="flex flex-row justify-between items-center mx-4">
+                    <h2 className="text-lg text-gray-300">Some Text</h2>
+                    <button className="text-gray-400 hover:text-white p-4">Clear All</button>
+                </div>
+
+                {/* Bet Details Main Container */}
+                <div className="bg-gray-800 p-4 mx-4 shadow-2xl border-2 border-gray-700">
+
+                    {/* Heading */}
+                    <div className="flex flex-row justify-between">
+                        <h2 className='text-left text-lg font-bold text-gray-300'>{teamName1} / {teamName2}</h2>
+                        <IoCloseSharp className="text-gray-300 text-3xl cursor-pointer" />
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                        <div>
+                            {selectedBet && (
+                                <>
+                                    <div className="flex flex-row justify-between">
+                                        <h2 className='text-left text-lg text-gray-300'>{selectedBet}</h2>
+                                        {selectedOdd && (
+                                            <>
+                                                <h2 className='text-left text-lg text-blue-400'>{selectedOdd}</h2>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    {/* Input Bet Amount */}
+                                    <div className="flex flex-row justify-between">
+                                        <input
+                                            type="number"
+                                            value={betAmount}
+                                            onChange={(e) => setBetAmount(e.target.value)}
+                                            placeholder={0.000001}
+                                            className="p-2 border rounded-md w-1/2"
+                                        />
+                                        <div className="flex flex-col text-gray-300 text-right text-lg">
+
+                                            {/* Est. Payout */}
+                                            <p>Est. Payout</p>
+
+                                            {/* Commission for transaction */}
+                                            <p>{(Number(betAmount) * 0.015).toFixed(8)}</p>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
-                    </>
-                )}
+                    </div>
+                </div>
             </div>
         </div>
     );

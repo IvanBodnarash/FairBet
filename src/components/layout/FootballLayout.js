@@ -11,14 +11,16 @@ import StuttgartLogo from "../../assets/img/fc-stuttgart-logo.png";
 
 import { GiSoccerBall } from "react-icons/gi";
 
-function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpenBetslip }) {
+function FootballLayout({ isOpenWallet, setIsOpenWallet }) {
     const [isBetDetailsOpen, setIsBetDetailsOpen] = useState(false);
     const [selectedBet, setSelectedBet] = useState(null);
+    const [selectedOdd, setSelectedOdd] = useState(null);
     const [betDetails, setBetDetails] = useState(false);
     const [betAmount, setBetAmount] = useState("");
 
-    const handleBetClick = (betType, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds) => {
+    const handleBetClick = (betType, teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds, oddType) => {
         setSelectedBet(betType);
+        setSelectedOdd(oddType);
         setBetDetails({ teamName1, teamName2, score, date, time, teamOdds1, teamOdds2, drawOdds });
         setIsBetDetailsOpen(true);
     };
@@ -26,6 +28,7 @@ function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpe
     const handleCloseBetDetails = () => {
         setIsBetDetailsOpen(false);
         setSelectedBet(null);
+        setSelectedOdd(null);
         setBetDetails({});
         setBetAmount("");
     };
@@ -49,7 +52,7 @@ function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpe
                     teamName1="Real Madrid"
                     teamName2="FC Barcelona"
                     score="2 - 1"
-                    date="Aug 23"
+                    date="Live Now"
                     time="11:30"
                     teamOdds1="2.25"
                     teamOdds2="2.15"
@@ -81,10 +84,10 @@ function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpe
                         walletName="Metamask"
                         walletLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png"
                     />
-                    <Wallet
+                    {/* <Wallet
                         walletName="Metamask"
                         walletLogo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/2048px-MetaMask_Fox.svg.png"
-                    />
+                    /> */}
                 </div>
             </WalletConnectionDrawer>
 
@@ -92,6 +95,7 @@ function FootballLayout({ isOpenWallet, setIsOpenWallet, isOpenBetslip, setIsOpe
             <BetDetailsDrawer
                 isOpenBetslip={isBetDetailsOpen}
                 selectedBet={selectedBet}
+                selectedOdd={selectedOdd}
                 betAmount={betAmount}
                 setBetAmount={setBetAmount}
                 {...betDetails}
