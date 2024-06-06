@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { IoReceiptSharp, IoCloseSharp } from "react-icons/io5";
+import { FaEthereum } from "react-icons/fa";
 
 const BetDetailsDrawer = ({
     isOpenBetslip,
@@ -53,20 +54,20 @@ const BetDetailsDrawer = ({
                 </div>
 
                 {/* Bet Details Main Container */}
-                <div className="bg-gray-800 p-4 mx-4 shadow-2xl border-2 border-gray-700">
+                <div className="bg-gray-800 mx-4 shadow-2xl border-2 border-gray-700 rounded-md">
 
                     {/* Heading */}
-                    <div className="flex flex-row justify-between">
+                    <div className="flex flex-row justify-between p-4 bg-gray-700">
                         <h2 className='text-left text-lg font-bold text-gray-300'>{teamName1} / {teamName2}</h2>
                         <IoCloseSharp className="text-gray-300 text-3xl cursor-pointer" />
                     </div>
 
                     {/* Content */}
-                    <div>
+                    <div className="flex flex-col p-4">
                         <div>
                             {selectedBet && (
                                 <>
-                                    <div className="flex flex-row justify-between">
+                                    <div className="py-4 flex flex-row justify-between">
                                         <h2 className='text-left text-lg text-gray-300'>{selectedBet}</h2>
                                         {selectedOdd && (
                                             <>
@@ -76,14 +77,19 @@ const BetDetailsDrawer = ({
                                     </div>
 
                                     {/* Input Bet Amount */}
-                                    <div className="flex flex-row justify-between">
-                                        <input
-                                            type="number"
-                                            value={betAmount}
-                                            onChange={(e) => setBetAmount(e.target.value)}
-                                            placeholder={0.000001}
-                                            className="p-2 border rounded-md w-1/2"
-                                        />
+                                    <div className="flex flex-row justify-between items-center">
+                                        <div className="flex flex-row items-center">
+                                            <input
+                                                type="number"
+                                                value={betAmount}
+                                                onChange={(e) => setBetAmount(e.target.value)}
+                                                placeholder={0.000001}
+                                                step={0.000001}
+                                                min={0}
+                                                className="p-2 h-10 border rounded-md w-3/4"
+                                            />
+                                            <FaEthereum className="items-center text-gray-300 text-3xl m-2" />
+                                        </div>
                                         <div className="flex flex-col text-gray-300 text-right text-lg">
 
                                             {/* Est. Payout */}
@@ -97,6 +103,26 @@ const BetDetailsDrawer = ({
                             )}
                         </div>
                     </div>
+                </div>
+
+                {/* Total Container */}
+                <div className="flex flex-col bottom-0">
+                    <hr className="mx-4 border-gray-700"></hr>
+
+                    {/* Total */}
+                    <div className="flex flex-row justify-between items-center mx-4">
+                        <h2 className='text-left text-xl text-gray-300'>Total:</h2>
+                        <h2 className='text-left text-xl text-gray-300'>{betAmount}</h2>
+                    </div>
+
+                    {/* Est. Payput */}
+                    <div className="flex flex-row justify-between items-center mx-4">
+                        <h2 className='text-left text-xl text-gray-300'>Est. Payout:</h2>
+                        <h2 className='text-left text-xl text-gray-300'>{(Number(betAmount) * 0.015).toFixed(8)}</h2>
+                    </div>
+
+                    {/* Place Bet Button */}
+                    <button className="text-white w-1/1 m-4 bg-indigo-900 hover:bg-indigo-700 p-2 rounded-md">Place Bet</button>
                 </div>
             </div>
         </div>
